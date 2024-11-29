@@ -1,0 +1,317 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+ body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-size: cover; 
+    background-attachment: fixed; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    overflow-x: hidden;
+  }
+
+  header {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.421);
+    color: white;
+    position: absolute; 
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    z-index: 10; 
+  }
+
+  /*PRIMERA FILA DEL HEADER*/
+  .firstRow a {
+    transition: 500ms;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    margin: 0 15px;
+    text-decoration: none;
+    color: rgb(255, 92, 92);
+    filter: drop-shadow(black 1px 1px 2px);
+  }
+
+  .firstRow a:hover {
+    color: rgb(255, 255, 255);
+  }
+  .firstRow {
+    display: flex;
+    justify-content: space-between; 
+  }
+  .left-links, .right-links {
+    display: flex;
+  }
+  .icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+  .iconMaps{
+    padding-right: 15px;
+    margin-right: 0px;
+    border-right: 2px solid white;
+  }
+  .iconEmail{
+    padding-left: 15px;
+    margin-left: 0px;
+    border-left: 2px solid white;
+  }
+  .iconFb{
+    padding-right: 15px;
+    margin-right: 0px;
+    border-right: 2px solid white;
+  }
+  .iconMoney{
+    padding-left: 15px;
+    margin-left: 0px;
+    border-left: 2px solid white;
+  }
+
+/*SEGUNDA FILA DEL HEADER*/
+  .secondRow { 
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    margin-top: 10px;
+    padding: 10px 0;
+  }
+  .left-section .logo {
+    width: 150px; 
+  }
+  .center-section {
+    display: flex;
+    align-items: center;
+  }
+  .nav-link {
+    transition: 500ms;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    margin: 0 15px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+  }
+  .nav-link:hover{
+    color: rgb(255, 92, 92);
+  }
+  .nav-link.active {
+    text-decoration: underline; /* Subrayar el enlace activo */
+  }
+  .button-link {
+    background-color: rgb(255, 92, 92);
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+    border-radius: 50px;
+    font-size: 14px;
+    transition: 600ms;
+  } 
+  .button-link:hover {
+    background-color: rgb(92, 136, 255);
+  }
+  .right-section {
+    display: flex;
+    align-items: center;
+  }
+
+
+
+
+
+
+/* SLIDER DE IMÁGENES */
+.slider {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Inicialmente invisible */
+    z-index: 0;
+    display: flex; /* Asegura que los elementos dentro del slide estén visibles */
+    justify-content: center; /* Centra horizontalmente los textos y botones */
+    align-items: center; /* Centra verticalmente los textos y botones */
+    flex-direction: column; /* Asegura que el texto y el botón se apilen verticalmente */
+    color: white; /* Texto blanco para contraste */
+    text-align: center; /* Centra el texto */
+    transition: opacity 1s ease-in-out;
+  }
+
+
+
+/* ANIMACIONES PARA LOS TEXTOS Y EL BOTÓN */
+@keyframes zoomIn {
+    0% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes zoomOut {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+  }
+
+
+
+  .slide h2, .slide p, .slide .btn {
+    opacity: 0;
+    animation: zoomOut 1s forwards;
+  }
+
+  .slide.active h2, .slide.active p, .slide.active .btn {
+  opacity: 1;
+  animation: zoomIn 1s forwards;
+}
+  
+  .slide.active {
+    opacity: 1;
+    z-index: 1; /* Slide activo visible y por encima */
+  }
+  
+
+
+/* ANIMACIONES PARA LAS IMÁGENES DE LOS SLIDERS */
+  @keyframes zoomOutImg {
+    0% {
+      transform: scale(1.25); 
+    }
+
+    50% {
+      transform: scale(1); 
+    }
+    100% {
+        transform: scale(1.25); 
+      }
+
+  }
+  .slide img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Mantiene la imagen detrás de los textos */
+    animation: zoomOutImg 8s infinite ease-in-out;
+    animation-play-state: paused;
+  }
+
+  .slide.active img {
+    animation-play-state: running; /* Al activar el slide, reinicia y reproduce la animación */
+  }
+  
+  .slide h2 {
+    font-size: 6.5rem;
+    margin: 10px 0;
+    z-index: 2;
+    filter: drop-shadow(black 2px 2px 2px);
+  }
+  
+  .slide p {
+    font-size: 2rem;
+    margin: 10px 0;
+    z-index: 2;
+    filter: drop-shadow(black 2px 2px 2px);
+  }
+  
+  .slide .btn {
+    padding: 10px 20px;
+    background-color: rgba(255, 92, 92, 0.8);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 20px;
+    z-index: 2;
+    transition: background-color 0.3s;
+  }
+  
+  .slide .btn:hover {
+    background-color: rgb(92, 136, 255);
+  }
+  
+  
+  
+  
+  
+
+/* FLECHAS EN LOS SLIDERS */
+.arrow-left, .arrow-right {
+  position: absolute;
+  top: 50%;
+  font-size: 30px;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10; /* Asegúrate de que las flechas estén encima de los slides */
+  transform: translateY(-50%);
+  transition: 300ms;
+}
+
+.arrow-left {
+  left: 20px;
+}
+
+.arrow-right {
+  right: 20px;
+}
+
+.arrow-left:hover,
+.arrow-right:hover {
+  color: rgba(255, 92, 92, 1);
+}
+  
+
+
+
+/* TEXT FIELD CON LOGO */
+.textField1{
+    padding: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.textField1 img{
+    width: 200px;
+}
+.textField1 p{
+    color:rgb(103, 103, 103);
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: center;
+    line-height: 2;
+}
+.bold{
+    font-weight: bold;
+}
+
+
+
